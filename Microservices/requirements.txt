@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+
+psycopg2-binary
+asyncpg
+python-dotenv
+
+ultralytics==8.3.94
+torch>=2.0.0
+Pillow
+
+scikit-learn
