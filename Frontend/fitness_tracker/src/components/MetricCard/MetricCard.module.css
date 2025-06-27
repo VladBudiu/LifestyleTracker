@@ -1,0 +1,44 @@
+.card {
+  background: rgba(255 255 255 / 0.45);
+  backdrop-filter: blur(4px);
+  border-radius: 1rem;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.6rem, 1vw, 1rem);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0 0 0 / .12);
+}
+
+.name {
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: clamp(1.2rem, 1.3vw + .8rem, 1.7rem);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1vw, 1rem);
+}
+
+.stat, .statGoal {
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: clamp(1rem, 1vw + .65rem, 1.3rem);
+}
+
+.statGoal { opacity: .7; }
+
+/* progress bar scales with viewport */
+.bar {
+  flex: 1 1 auto;
+  height: clamp(10px, .8vw + 8px, 18px);
+  border-radius: 6px;
+}

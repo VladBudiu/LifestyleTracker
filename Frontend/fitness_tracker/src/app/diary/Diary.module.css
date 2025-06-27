@@ -1,0 +1,108 @@
+/* === layout ================================================== */
+.page {
+  min-height: 100vh;          /* full viewport height           */
+  display: flex;
+  flex-direction: column; 
+  color:black;    /* NavBar + centred content stack */
+}
+
+/* fills the remaining space under NavBar and centres its kids   */
+.centerArea {
+  flex: 1;                    /* take all remaining height      */
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* horizontal centring            */
+  justify-content: center;    /* vertical   centring            */
+  gap: 2rem;
+  padding: 2rem 1rem;
+  width: 100%;
+}
+
+/* === date bar ================================================= */
+.dateBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;    /* horizontal centring of items   */
+  gap: 0.75rem;
+  font-size: clamp(1.4rem, 1.5vw + 1rem, 2rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* === floating add button ===================================== */
+.fab {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0 0 0 / 0.18);
+  z-index: 99;
+}
+
+
+/* === modal backdrop =========================================== */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* === modal container ========================================== */
+.modal {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  max-width: 90%;
+  width: 350px;
+  text-align: center;
+  animation: fadeInScale 0.25s ease-in-out;
+}
+
+/* === optional animation ======================================= */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* === modal content ============================================ */
+.modal h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modal input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.modal button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modal button:hover {
+  background-color: #005ad3;
+}

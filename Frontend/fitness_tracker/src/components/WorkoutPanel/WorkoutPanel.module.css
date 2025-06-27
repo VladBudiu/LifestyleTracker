@@ -1,0 +1,96 @@
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.25rem, 3vw, 2rem);
+    padding: clamp(1.5rem, 3vw, 3rem);
+    border-radius: 1.25rem;
+    background: hsla(0, 0%, 45%, 0.205);
+    backdrop-filter: blur(6px);
+    width: 100%;
+    max-width: 95vw;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+  
+  /* Summary ring */
+  .summary {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .totalLabel h2 {
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    margin: 0;
+  }
+  
+  .totalLabel span {
+    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+  }
+  
+  .summary .MuiCircularProgress-root {
+    --CircularProgress-size: clamp(60px, 8vw, 110px);
+    --CircularProgress-thickness: clamp(3px, 0.6vw, 6px);
+    height: clamp(60px, 8vw, 110px);
+    width: clamp(60px, 8vw, 110px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bigPct {
+    font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Days grid */
+  .daysGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+  }
+  
+  .dayBlock {
+    background: hsla(0, 0%, 100%, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  
+  .dayHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dayHeader h3 {
+    margin: 0;
+    font-size: clamp(1rem, 1.4vw, 1.4rem);
+  }
+  
+  .exerciseList {
+    padding-left: 1.2rem;
+    margin: 0;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    list-style: disc;
+  }
+  
+  .emptyText {
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    opacity: 0.7;
+  }
+  .totalLabelWithButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  

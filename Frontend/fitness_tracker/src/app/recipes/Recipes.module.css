@@ -1,0 +1,153 @@
+.recipesPageContainer {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, #A3D5FF, #0070E0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .searchBar {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    color: black;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .card {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+  }
+  
+  .cardContent {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    text-align: center;
+  }
+  
+  .cardContent h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .cardContent p {
+    margin: 0.3rem 0 0;
+    font-size: 0.95rem;
+  }
+  
+  .pagination {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .pageBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: #eee;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+  
+  .pageBtn:hover {
+    background: #ccc;
+  }
+  
+  .active {
+    background-color: #0070e0;
+    color: white;
+  }
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContent {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    color: black;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .modalImage {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .closeButton {
+    margin-top: 1rem;
+    background-color: #f44336;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

@@ -1,0 +1,48 @@
+.signupWrapper {
+	height: calc(100vh - 65px); /* Full viewport minus navbar */
+	background-color: #F8FAFC;
+	display: flex;
+	justify-content: center;
+	align-items: center; /* Vertically center */
+	padding: 20px;
+	padding-top: 4%;
+	flex-direction: column;
+	position: relative; 
+
+  }
+  
+  .insideBox {
+	background-color: #A3D5FF;/*rgba(0, 225, 255, 0.05); more visible */
+	color: rgb(0, 0, 0);
+	box-shadow: 0 6px 30px #4DA3FF; /* stronger for contrast */
+	width: 600px;
+	max-width: 90vw;
+	border-radius: 20px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch; /* allows full width for fields/buttons */
+	padding: 40px;
+	backdrop-filter: blur(12px);
+	margin: auto;
+  }
+  
+  .tallSubBox {
+	margin: 10px;
+	padding: 20px;
+	text-align: left;
+  }
+  
+  /* Optional: improve MUI input contrast in dark mode */
+  .MuiInputBase-root input,
+  .MuiInputLabel-root {
+	color: white !important;
+  }
+  
+  .MuiOutlinedInput-root {
+	fieldset {
+	  border-color: #444 !important;
+	}
+  }
+  

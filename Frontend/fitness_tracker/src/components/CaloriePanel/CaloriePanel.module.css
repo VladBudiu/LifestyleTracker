@@ -1,0 +1,197 @@
+.panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border-radius: 1.25rem;
+  background: hsla(0, 0%, 45%, 0.205);
+  backdrop-filter: blur(6px);
+
+  width: 100%;
+  max-width: 95vw;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+/* ─── left column ───────────────────────── */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* calories row */
+.totalRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.totalLabel h2 {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  margin: 0;
+}
+
+.totalLabel span {
+  font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+}
+
+/* Circular progress for total intake */
+.totalRow .MuiCircularProgress-root {
+  --CircularProgress-size: clamp(60px, 8vw, 110px);
+  --CircularProgress-thickness: clamp(3px, 0.6vw, 6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.totalRow .MuiCircularProgress-root > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(60px, 8vw, 110px);
+  width: clamp(60px, 8vw, 110px);
+}
+
+.bigPct {
+  font-size: clamp(1.4rem, 2.5vw, 2.5rem);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+/* centers the % inside each macro ring */
+.macroPct {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;   /* fill the SVG box */
+  height: 100%;
+  font-size: clamp(0.9rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+}
+
+
+/* macros row */
+.macros {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  justify-content: space-around;
+}
+
+.macroItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.macros .MuiCircularProgress-root {
+  --CircularProgress-size: clamp(50px, 6vw, 85px);
+  --CircularProgress-thickness: clamp(2px, 0.5vw, 4px);
+  height: clamp(50px, 6vw, 85px);
+  width: clamp(50px, 6vw, 85px);
+}
+
+.macroLabel {
+  margin-top: 0.4rem;
+  font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+}
+
+/* meals */
+.meals {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+.mealBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mealHeader {
+
+  display: grid;
+  grid-template-columns: auto 1fr auto auto; 
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+}
+
+.mealTitle {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
+}
+
+.mealTotals {
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
+  opacity: 0.8;
+}
+
+.trackBtn {
+  margin-left: 0;
+}
+
+.foodList {
+  margin: 0 0 0 2.2rem;
+  padding-left: 0.6rem;
+  list-style: disc;
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+}
+
+/* ─── water column ───────────────────────── */
+.waterCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.customWaterBar {
+  height: 100%;      /* Responsive height */
+  width: clamp(12px, 1.5vw, 24px);        /* Responsive width */
+  background-color: #8b8b8b;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;        /* Fill bottom-up */
+  transition: height 0.3s ease, width 0.3s ease;
+}
+
+.customWaterFill {
+  width: 100%;
+  background-color: #0051ff;
+  transition: height 0.3s ease;
+}
+
+.waterLabel {
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+@media (max-width: 600px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+
+  .waterCol {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .customWaterBar {
+    flex-direction: row;       /* Switch to horizontal fill */
+    height: 12px;
+    width: 160px;
+  }
+
+  .customWaterFill {
+    height: 100%;
+    width: auto;
+    transition: width 0.3s ease;
+  }
+}
