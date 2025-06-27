@@ -5,14 +5,14 @@ const theme = extendTheme({
     values: { xs: 0, sm: 600, md: 900, lg: 1200, xl: 1536 },
   },
 
-  /* ─────────── add palette.calorie ( #ffd43b ) ─────────── */
+
   colorSchemes: {
     light: {
       palette: {
         calorie: {
           500: '#ffd43b',
           solidBg: '#ffd43b',
-          solidColor: '#000',     // inner text color (Joy needs this)
+          solidColor: '#000',     
         },
       },
     },
@@ -28,7 +28,7 @@ const theme = extendTheme({
   },
 
   components: {
-    /* keep your responsive Button rules … */
+    
     JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
@@ -59,15 +59,15 @@ const theme = extendTheme({
     JoyCircularProgress: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          /* base responsive ring for everyone */
+          
           '--CircularProgress-size': 'clamp(40px, 6vw, 100px)',
           '--CircularProgress-thickness': 'clamp(4px, 0.7vw, 8px)',
 
-          /* special rules when color="calorie" */
+          
           ...(ownerState.color === 'calorie' && {
             '--CircularProgress-size': 'clamp(90px, 12vw, 180px)',
             '--CircularProgress-thickness': 'clamp(6px, 1.2vw, 18px)',
-            /* the stroke takes palette.calorie[500] automatically */
+            
           }),
         }),
       },

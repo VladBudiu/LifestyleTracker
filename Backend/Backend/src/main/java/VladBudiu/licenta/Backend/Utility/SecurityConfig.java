@@ -12,8 +12,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())       // disable CSRF if you're using cookies but not sessions
-                .cors(Customizer.withDefaults())     // <- THIS enables your WebMvcConfigurer CORS rules
+                .csrf(csrf -> csrf.disable())       
+                .cors(Customizer.withDefaults())    
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()
                 );

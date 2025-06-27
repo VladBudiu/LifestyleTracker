@@ -36,7 +36,7 @@ public class AuthController {
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .maxAge(600) // 10 minutes
+                .maxAge(600)
                 .sameSite("Lax")
                 .build();
 
@@ -44,7 +44,7 @@ public class AuthController {
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .maxAge(604800) // 7 days
+                .maxAge(604800) 
                 .sameSite("Lax")
                 .build();
 

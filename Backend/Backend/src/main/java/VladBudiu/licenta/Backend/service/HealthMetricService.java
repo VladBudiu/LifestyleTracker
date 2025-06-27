@@ -24,14 +24,12 @@ public class HealthMetricService {
 
     private final CalorieLogRepository calorieRepo;
 
-    /* ------------------------------------------------------ *
-     *  Public API                                            *
-     * ------------------------------------------------------ */
+   
     public List<HealthMetricsDTO> getMetricsForUser(Long userId) {
 
         List<HealthMetricsDTO> metrics = new ArrayList<>();
 
-        /* ---------- 1) CALORIES TODAY ---------- */
+        /*  1) CALORIES TODAY  */
         CalorieLog today = calorieRepo
                 .findByUserIdAndDay(userId, LocalDate.now())
                 .orElse(null);
@@ -43,7 +41,7 @@ public class HealthMetricService {
                 (int) curCalories,  "kcal",
                 (int) tgtCalories, "kcal"));
 
-        /* ---------- 2) WEIGHT ---------- */
+        /*  2) WEIGHT  */
         long latestWeight = singleLong("""
                 SELECT w.weight
                 FROM   weight_logs w
@@ -74,7 +72,7 @@ public class HealthMetricService {
                 (int) startWeight ));
 
 
-        /* ---------- 3) WATER TODAY -------------- */
+        /*  3) WATER TODAY  */
         long waterToday = singleLong("""
                 SELECT COALESCE(SUM(w.water_intake), 0)
                 FROM   water_logs w
@@ -92,7 +90,7 @@ public class HealthMetricService {
                 (int) waterToday, "ml",
                 (int) waterGoal,  "ml"));
 
-        /* ---------- 4) SLEEP (latest) ----------- */
+        /*  4) SLEEP (latest)  */
         long sleepLatest = singleLong("""
                 SELECT s.sleep_hours
                 FROM   sleep_logs s
@@ -111,7 +109,7 @@ public class HealthMetricService {
                 (int) sleepLatest, "hrs",
                 (int) sleepGoal,  "hrs"));
 
-        /* ---------- 5) STEPS TODAY -------------- */
+        /*  5) STEPS TODAY  */
         long stepsToday = singleLong("""
                 SELECT COALESCE(SUM(s.steps), 0)
                 FROM   steps_logs s
@@ -129,7 +127,7 @@ public class HealthMetricService {
                 (int) stepsToday, "steps",
                 (int) stepsGoal,  "steps"));
 
-        /* ---------- 6) WORKOUTS THIS WEEK ------- */
+        /*  6) WORKOUTS THIS WEEK  */
         long workoutsThisWeek = singleLong("""
                 SELECT COALESCE(SUM(w.workouts_done), 0)
                 FROM   workout_logs w
@@ -216,15 +214,13 @@ public class HealthMetricService {
     }
 
 
-    /* ------------------------------------------------------ *
-     *  Helper: run a native query that returns a single long  *
-     * ------------------------------------------------------ */
+   
     private long singleLong(String sql, Long uid, long fallback) {
         try {
             Object val = entityManager.createNativeQuery(sql)
                     .setParameter("uid", uid)
                     .getSingleResult();
-            // `getSingleResult()` can legally return `null`
+        
             if (val == null) return fallback;
             return ((Number) val).longValue();
         } catch (NoResultException ignored) {

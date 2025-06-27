@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Food, MealId } from "@/components/CaloriePanel/CaloriePanel";
 
-/* ---------- internal shapes ---------- */
+
 interface RawFood {
   name: string;
   calories: number;
@@ -27,10 +27,10 @@ interface RawFood {
   fat: number;
 }
 interface LocalState {
-  id: string;      // stable React-key
-  label: string;   // detected class
-  base?: RawFood | null; // first DB match (undefined = still fetching)
-  qty: number;     // grams chosen by user
+  id: string;      
+  label: string;   
+  base?: RawFood | null; 
+  qty: number;     
 }
 interface Props {
   foods: Food[];
@@ -46,9 +46,9 @@ export default function DetectedFoodsModal({
   onClose,
 }: Props) {
   const [items, setItems] = useState<LocalState[]>([]);
-  const router = useRouter(); // <── NEW
+  const router = useRouter(); 
 
-  /* fetch DB matches each time the modal opens --------------------------- */
+  
   useEffect(() => {
     if (!open) {
       setItems([]);
@@ -58,7 +58,7 @@ export default function DetectedFoodsModal({
     const init = foods.map((f, idx) => ({
       id: `${f.name}-${idx}`,
       label: f.name,
-      base: undefined, // loading
+      base: undefined, 
       qty: 100,
     }));
     setItems(init);
@@ -77,10 +77,10 @@ export default function DetectedFoodsModal({
         }
       })
     ).then(setItems);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [open]);
 
-  /* helper: apply quantity factor --------------------------------------- */
+  
   const toFood = (state: LocalState): Food | null => {
     if (!state.base) return null;
     const { calories, protein, carbs, fat, name } = state.base;
@@ -96,12 +96,12 @@ export default function DetectedFoodsModal({
     };
   };
 
-  /* add + full-page refresh --------------------------------------------- */
+  
   const handleAdd = (food: Food, meal: MealId) => {
-    onAdd(food, meal);  // optimistic update in parent
-    router.refresh();   // <── forces a client-side revalidation / refresh
-    setItems([]);       // close list for UX
-    onClose();          // close modal
+    onAdd(food, meal);  
+    router.refresh();   
+    setItems([]);       
+    onClose();         
   };
 
   return (
@@ -165,7 +165,7 @@ export default function DetectedFoodsModal({
                             size="sm"
                             variant="soft"
                             disabled={!food}
-                            onClick={() => food && handleAdd(food, m)} // <── NEW
+                            onClick={() => food && handleAdd(food, m)} 
                             sx={{ mr: 0.5, mb: 0.5 }}
                           >
                             {m}

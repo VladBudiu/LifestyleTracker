@@ -37,7 +37,7 @@ public class SignUpController {
                 .secure(true)
                 .sameSite("Strict")
                 .path("/")
-                .maxAge(600) // 10 minutes
+                .maxAge(600)
                 .build();
 
         ResponseCookie refreshCookie = ResponseCookie.from("refresh_token", refreshToken)
@@ -45,7 +45,7 @@ public class SignUpController {
                 .secure(true)
                 .sameSite("Strict")
                 .path("/auth/refresh")
-                .maxAge(604800) // 7 days
+                .maxAge(604800) 
                 .build();
 
         res.addHeader(HttpHeaders.SET_COOKIE, accessCookie.toString());

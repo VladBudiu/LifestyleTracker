@@ -20,10 +20,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// export const metadata: Metadata = {
-//   title: "Fitness Tracker",
-//   description: "Track your fitness goals and progress",
-// };
+
 
 
 

@@ -13,7 +13,7 @@ type Metric = {
   unit: string;
   goal: number;
   goalUnit: string;
-  start?: number;          // new
+  start?: number;          
 };
 
 
@@ -29,8 +29,7 @@ const Banner1 = () => {
   const [isAuthorized, setIsAuthorized] = React.useState(false);
 
   React.useEffect(() => {
-    // if (hasFetchedRef.current) return;
-    // hasFetchedRef.current = true;
+    
 
     const fetchData = async () => {
       try {
@@ -88,7 +87,7 @@ const Banner1 = () => {
   const { value: current, goal, start } = item;
 
   if (item.name === "Weight") {
-    // use start if provided, else fall back to current so we don’t explode
+    
     const baseline = start ?? current;
 
     const distance = Math.abs(goal - baseline);
@@ -98,7 +97,7 @@ const Banner1 = () => {
     return Math.min(100, Math.round(progress));
   }
 
-  // other metrics stay the same
+  
   if (goal === 0) return current === 0 ? 100 : 0;
   return Math.min(100, Math.round((current / goal) * 100));
 };

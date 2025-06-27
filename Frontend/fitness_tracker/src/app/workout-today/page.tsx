@@ -20,9 +20,7 @@ import Stack from "@mui/joy/Stack";
 import { IoAdd, IoSearch, IoTrash } from "react-icons/io5";
 import { fetchWithAutoRefresh } from "@/lib/fetchWithAutoRefresh";
 
-/* -------------------------------------------------------------------------- */
-/*  Type definitions                                                           */
-/* -------------------------------------------------------------------------- */
+
 interface Exercise {
   id: number;
   exercise: string;
@@ -53,30 +51,26 @@ interface NewWorkoutPayload {
   }[];
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Component                                                                  */
-/* -------------------------------------------------------------------------- */
+
 export default function CreateWorkoutPage() {
   const router = useRouter();
 
-  /* ---------------------- Workout-level state ---------------------- */
+  
   const [title, setTitle] = useState("");
   const [description, setDesc] = useState("");
   const [duration, setDur] = useState<number | "">(""); // minutes
   const [type, setType] = useState<string | null>(null);
   const [imageUrl, setImg] = useState("");
 
-  /* ---------------------- Exercise bank + search ------------------- */
+ 
   const [allExercises, setAllExercises] = useState<Exercise[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
-  /* ---------------------- Chosen exercises ------------------------ */
+  
   const [selected, setSelected] = useState<UserExercise[]>([]);
 
-  /* ---------------------------------------------------------------- */
-  /*  Fetch full exercise list once                                   */
-  /* ---------------------------------------------------------------- */
+  
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -93,11 +87,9 @@ export default function CreateWorkoutPage() {
     };
   }, []);
 
-  /* ---------------------------------------------------------------- */
-  /*  Helpers                                                         */
-  /* ---------------------------------------------------------------- */
+  
   const addExercise = (ex: Exercise) => {
-    if (selected.some((x) => x.id === ex.id)) return; // already chosen
+    if (selected.some((x) => x.id === ex.id)) return; 
     setSelected((sel) => [
       ...sel,
       { id: ex.id, name: ex.exercise, sets: [] },
@@ -138,9 +130,7 @@ export default function CreateWorkoutPage() {
     [selected]
   );
 
-  /* ---------------------------------------------------------------- */
-  /*  Submit workout                                                  */
-  /* ---------------------------------------------------------------- */
+  
   const saveWorkout = async () => {
     const payload: NewWorkoutPayload = {
       title,
@@ -168,16 +158,12 @@ export default function CreateWorkoutPage() {
     }
   };
 
-  /* ---------------------------------------------------------------- */
-  /*  Derived filtered list                                           */
-  /* ---------------------------------------------------------------- */
+  
   const filteredExercises = allExercises.filter((ex) =>
     ex.exercise.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  /* ---------------------------------------------------------------- */
-  /*  Render                                                          */
-  /* ---------------------------------------------------------------- */
+  
   return (
     <Box className={styles.page}>
       {/* ---------------- Workout meta ---------------- */}
@@ -345,15 +331,14 @@ export default function CreateWorkoutPage() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* ------------------------- Utilities ------------------------------ */
 const workoutTypes = [
-  "strength",
-  "hypertrophy",
+  "shoulders",
+  "back",
+  "chest",
+  "arms",
+  "forearms",
+  "legs",
   "cardio",
-  "mobility",
-  "skill",
-  "other",
 ] as const;
 
 const cap = (s: string) => s[0].toUpperCase() + s.slice(1);

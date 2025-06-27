@@ -6,5 +6,5 @@ public record WeekResponse(
         String weekStart,                  // Monday of the week
         Integer goalDays,                  // from user_goals
         List<DayDto> days,                 // always 7 entries
-        Integer totalDaysWithWorkouts      // convenience count
+        Integer totalDaysWithWorkouts      // count
 ) {}

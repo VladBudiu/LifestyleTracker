@@ -16,7 +16,7 @@ public class UserWorkoutSetId implements Serializable {
 
 
 
-    /* getters / setters / equals / hashCode */
+    /* getters / setters*/
 
     public Long getUserWorkoutId() {
         return userWorkoutId;

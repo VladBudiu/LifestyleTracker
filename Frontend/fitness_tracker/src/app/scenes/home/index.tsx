@@ -86,19 +86,19 @@ const Home = (props: Props) => {
 				<div className='flex h-[150px] w-full bg-primary-100 py-10'>
 					<div className='flex justify-center mx-auto w-5/6'>
 						<div className='flex w-3/5 items-center justify-between gap-8 '>
-							{/* <img src={SponsorRedBull} alt="redbull-sponsor" /> */}
+
 							<Image
 									className="mx-auto"
 									src={SponsorRedBull}
 									alt="sponsor-redbull"
 									/>
-							{/* <img src={SponsorForbes} alt="forbes-sponsor" /> */}
+						
 							<Image
 									className="mx-auto"
 									src={SponsorForbes}
 									alt="forbes-sponsor"
 									/>
-							{/* <img src={SponsorFortune} alt="fortune-sponsor" /> */}
+
 							<Image
 									className="mx-auto"
 									src={SponsorFortune}

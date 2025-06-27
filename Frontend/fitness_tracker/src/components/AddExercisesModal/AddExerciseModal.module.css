@@ -26,8 +26,7 @@
     margin-bottom: 1rem;
     padding-right: 6px;
   }
-  
-  /* Make button section sticky at bottom */
+
   .modalButtons {
     display: flex;
     justify-content: flex-end;
@@ -161,7 +160,7 @@
     background-color: #0056b3;
   }
   
-  /* ✅ Green style when selected */
+  
   .selected {
     background-color: #28a745;
   }

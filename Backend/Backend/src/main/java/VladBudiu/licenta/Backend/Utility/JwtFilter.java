@@ -68,7 +68,7 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 String userEmail = jwtUtil.validateAccessToken(accessToken);
                 System.out.println("Valid token for user: " + userEmail);
-                // You could optionally attach user details to request attributes here
+                
                 filterChain.doFilter(request, response);
             } catch (Exception e) {
                 System.out.println("Invalid access token: " + e.getMessage());

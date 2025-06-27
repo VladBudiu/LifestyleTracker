@@ -11,7 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-import jakarta.servlet.Filter; // ✅ Corect: servlet filter
+import jakarta.servlet.Filter; 
 
 @TestConfiguration
 public class DisableJwtFilterConfig {
@@ -23,7 +23,7 @@ public class DisableJwtFilterConfig {
             @Override
             protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
                     throws ServletException, IOException {
-                filterChain.doFilter(request, response); // Bypass JWT logic
+                filterChain.doFilter(request, response); 
             }
         };
     }

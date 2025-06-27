@@ -24,7 +24,6 @@ export default function Home() {
 
       if (!userString) {
         console.warn("User not found in localStorage");
-        // router.push("/login");
         return;
       }
 
@@ -36,21 +35,21 @@ export default function Home() {
       }
 
       try {
-        console.log("🔐 Calling protected endpoint to check auth...");
+        console.log(" Calling protected endpoint to check auth...");
 
         const res = await fetchWithAutoRefresh(`http://localhost:8080/api/metrics/${user.userId}`);
 
         if (!res || !res.ok) {
-          console.warn("❌ Auth check failed or refresh failed");
+          console.warn(" Auth check failed or refresh failed");
           localStorage.removeItem("user");
           router.push("/login");
           return;
         }
 
-        console.log("✅ Auth successful or refreshed");
+        console.log(" Auth successful or refreshed");
         setIsLoading(false);
       } catch (err) {
-        console.error("❌ Exception during auth check:", err);
+        console.error(" Exception during auth check:", err);
         localStorage.removeItem("user");
         router.push("/login");
       }

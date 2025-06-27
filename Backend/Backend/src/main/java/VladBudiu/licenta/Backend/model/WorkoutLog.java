@@ -15,12 +15,12 @@ public class WorkoutLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /* ——— FK → users(id) ——— */
+   
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
     private User user;
 
-    /* Monday of this ISO week */
+   
     @Column(name = "week_start", nullable = false)
     private LocalDate weekStart;
 

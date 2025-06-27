@@ -39,7 +39,7 @@ public class HistoryService {
             /* calories */
             int kcal = mealRepo.caloriesForDay(user.getId(), d);
 
-            /* weight (latest ≤ end of day) */
+            /* weight (latest end of day) */
             double weight = weightRepo.latestUpTo(
                             user.getId(), d.atTime(LocalTime.MAX))
                     .map(WeightLog::getWeight)
@@ -68,9 +68,7 @@ public class HistoryService {
         return list;
     }
 
-    /**
-     * exercise progression (used by the extra chart)
-     */
+    
     public List<MaxWeightDTO> exerciseSeries(User user,
                                               String exercise,
                                               LocalDate from,

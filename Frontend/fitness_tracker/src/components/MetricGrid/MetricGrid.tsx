@@ -1,10 +1,10 @@
-// components/MetricGrid/MetricGrid.tsx
+
 "use client";
 import MetricCard from "@/components/MetricCard/MetricCard";
 import { Metric } from "@/lib/workoutUtils";
 import styles from "./MetricGrid.module.css";
 
-/* Utility to split array into rows of 2 items each */
+
 const chunk = <T,>(arr: T[]) =>
   Array.from({ length: Math.ceil(arr.length / 2) }, (_, i) =>
     arr.slice(i * 2, i * 2 + 2)

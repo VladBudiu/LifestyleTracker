@@ -9,5 +9,5 @@ public class AddFoodRequestDTO {
     private double  protein;   // g
     private double  carbs;     // g
     private double  fat;       // g
-    private int     quantity;  // g ml etc.
+    private int     quantity;  // g 
 }

@@ -29,19 +29,19 @@ public class SignUpService {
     private final WeightLogRepository  weightRepo;
     private final PasswordEncoder      passwordEncoder;
 
-    /* ------------------------------------------------------------------ */
+    
     public User register(SignUpRequestDTO req) {
 
-        /* ---------- uniqueness check ---------- */
+        /*  uniqueness check  */
         userRepo.findByEmail(req.getEmail())
                 .ifPresent(u -> { throw new IllegalArgumentException("Email already in use"); });
 
-        /* ---------- USER ---------------------- */
+        /*  USER  */
         User user = new User();
         user.setEmail(req.getEmail());
         user.setUsername(req.getUsername());
 
-        // BCrypt-hash the password before saving
+        // BCrypt-hash 
         user.setPassword(passwordEncoder.encode(req.getPassword()));
 
         user.setWeightGoal(req.getWeightGoal());
@@ -53,7 +53,7 @@ public class SignUpService {
 
         userRepo.save(user);
 
-        /* ---------- GOALS ---------------------- */
+        /*  GOALS  */
         int kcalTarget = calcCalorieTarget(req);
         MacroGoals macroGoals = computeMacroGoals(kcalTarget, user.getWeightGoal());
 
@@ -86,7 +86,7 @@ public class SignUpService {
 
         goalsRepo.save(goals);
 
-        /* ---------- INITIAL DAILY CALORIE LOG -- */
+        /*  INITIAL DAILY CALORIE LOG */
         CalorieLog cLog = new CalorieLog();
         cLog.setUser(user);
         cLog.setDay(LocalDate.now());
@@ -94,7 +94,7 @@ public class SignUpService {
         cLog.setTargetCalories(kcalTarget);
         calorieRepo.save(cLog);
 
-        /* ---------- INITIAL WEIGHT LOG --------- */
+        /*  INITIAL WEIGHT LOG  */
         if (user.getWeight() != null) {
             WeightLog wLog = new WeightLog();
             wLog.setUser(user);
@@ -106,7 +106,7 @@ public class SignUpService {
         return user;
     }
 
-    /** crude BMR-based estimate; refine later */
+   
     private int calcCalorieTarget(SignUpRequestDTO u) {
         if (u.getWeekly() == null) return 2000;
         double dailyDeficit = (Double.parseDouble(u.getWeekly()) * 7_700) / 7.0;

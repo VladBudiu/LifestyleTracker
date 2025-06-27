@@ -21,7 +21,7 @@ public class CalorieLog {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-//    @Column(name = "day_date")
+
     private LocalDate day;
     private int currentCalories;
     private int targetCalories;

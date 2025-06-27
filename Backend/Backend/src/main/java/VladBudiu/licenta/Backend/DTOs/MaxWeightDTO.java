@@ -13,7 +13,7 @@ public class MaxWeightDTO {
         this.maxWeight = maxWeight;
     }
 
-    /* ───────── Getters ───────── */
+    /* Getters */
 
     public LocalDate getDate()      { return date; }
     public Double    getMaxWeight() { return maxWeight; }

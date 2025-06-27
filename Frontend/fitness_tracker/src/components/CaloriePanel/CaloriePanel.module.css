@@ -13,14 +13,14 @@
   box-sizing: border-box;
 }
 
-/* ─── left column ───────────────────────── */
+
 .left {
   display: flex;
   flex-direction: column;
   gap: clamp(1rem, 2vw, 2rem);
 }
 
-/* calories row */
+
 .totalRow {
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
   font-size: clamp(0.95rem, 1.5vw, 1.2rem);
 }
 
-/* Circular progress for total intake */
+
 .totalRow .MuiCircularProgress-root {
   --CircularProgress-size: clamp(60px, 8vw, 110px);
   --CircularProgress-thickness: clamp(3px, 0.6vw, 6px);
@@ -63,19 +63,19 @@
   width: 100%;
 }
 
-/* centers the % inside each macro ring */
+
 .macroPct {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;   /* fill the SVG box */
+  width: 100%;  
   height: 100%;
   font-size: clamp(0.9rem, 1.6vw, 1.2rem);
   font-weight: 600;
 }
 
 
-/* macros row */
+
 .macros {
   display: flex;
   gap: clamp(1rem, 2vw, 2rem);
@@ -100,7 +100,7 @@
   font-size: clamp(0.8rem, 1.2vw, 1.1rem);
 }
 
-/* meals */
+
 .meals {
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@
   font-size: clamp(0.85rem, 1.1vw, 1rem);
 }
 
-/* ─── water column ───────────────────────── */
+
 .waterCol {
   display: flex;
   flex-direction: column;
@@ -152,13 +152,13 @@
 }
 
 .customWaterBar {
-  height: 100%;      /* Responsive height */
-  width: clamp(12px, 1.5vw, 24px);        /* Responsive width */
+  height: 100%;      
+  width: clamp(12px, 1.5vw, 24px);       
   background-color: #8b8b8b;
   border-radius: 12px;
   overflow: hidden;
   display: flex;
-  flex-direction: column-reverse;        /* Fill bottom-up */
+  flex-direction: column-reverse;        
   transition: height 0.3s ease, width 0.3s ease;
 }
 
@@ -184,7 +184,7 @@
   }
 
   .customWaterBar {
-    flex-direction: row;       /* Switch to horizontal fill */
+    flex-direction: row;       
     height: 12px;
     width: 160px;
   }

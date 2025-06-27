@@ -1,10 +1,10 @@
 .meters {
     display: grid;
-    grid-template-columns: repeat(3, 300px); /* 3 cards per row, fixed size */
-    gap: 20px 50px; /* row gap, column gap */
-    justify-content: center; /* center the whole grid horizontally */
+    grid-template-columns: repeat(3, 300px); 
+    gap: 20px 50px;
+    justify-content: center; 
     align-items: center;
-    padding-top: 6%;/* spacing from navbar */
+    padding-top: 6%;
     padding-bottom: 1%;
 }
 

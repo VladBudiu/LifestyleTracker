@@ -13,7 +13,7 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /* Required on signup */
+    
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -23,7 +23,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    /* Optional / captured later */
+   
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
@@ -40,13 +40,11 @@ public class User {
     @Column(name = "sign_up_date", nullable = false)
     private LocalDate signUpDate = LocalDate.now();
 
-    /* ── 1‑to‑1 link to goals table ──────────────── */
+  
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
     private List<UserGoals> goals;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<UserWorkout> userWorkouts;
     //Constructors
 
     public User(Long id, String email, String password, String username, String firstName, String lastName, LocalDate dateOfBirth, String weightGoal, String activityLevel, Double height, Double weight, Double weightTarget, LocalDate signUpDate, List<UserGoals> goals) {

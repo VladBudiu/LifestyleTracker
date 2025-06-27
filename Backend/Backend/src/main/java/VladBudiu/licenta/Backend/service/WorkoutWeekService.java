@@ -30,15 +30,15 @@ public class WorkoutWeekService {
     public WeekResponse getWeek(Long userId, LocalDate weekStart) {
         LocalDate weekEnd = weekStart.plusDays(6);
 
-        // 1. fetch data
+        
         List<UserWorkout> dbRows = workoutRepo
                 .findByUserIdAndPerformedAtBetween(userId, weekStart, weekEnd);
 
         int goalDays = goalRepo.findFirstByUserId(userId)
                 .map(UserGoal::getWorkoutGoal)
-                .orElse(5);               // sane default
+                .orElse(5);               
 
-        // 2. bucket workouts into the 7 days
+        
         Map<LocalDate,List<WorkoutDto2>> byDate = dbRows.stream()
                 .collect(groupingBy(UserWorkout::getPerformedAt,
                         mapping(w -> new WorkoutDto2(w.getId(), w.getTitle()), toList())));

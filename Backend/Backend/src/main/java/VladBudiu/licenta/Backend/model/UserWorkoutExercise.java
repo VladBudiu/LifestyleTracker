@@ -13,12 +13,12 @@ public class UserWorkoutExercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /* ───── relationships ───── */
+   
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "workout_id")           // FK → user_workouts(id)
+    @JoinColumn(name = "workout_id")          
     private UserWorkout userWorkout;
 
-    /* ───── columns ───── */
+
     @Column(nullable = false)
     private String name;
 

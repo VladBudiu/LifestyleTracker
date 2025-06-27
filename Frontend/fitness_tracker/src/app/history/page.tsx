@@ -42,14 +42,8 @@ export default function HistoryPage() {
       setWeeklyWorkouts(weekly);
     };
 
-    // const fetchProgression = async () => {
-    //   const res = await fetchWithAutoRefresh(`http://localhost:8080/api/history/progression?user=${userId}&exercise=${encodeURIComponent(exercise)}&start=${start}&end=${end}`);
-    //   const data = await res.json();
-    //   setExerciseSeries(data);
-    // };
-
+  
     fetchHistory();
-    // fetchProgression();
   }, [exercise]);
 
   const minWeight = Math.min(...chartData.map((d) => d.weight ?? 100));
@@ -104,29 +98,6 @@ export default function HistoryPage() {
           </Sheet>
         </Grid>
       </Grid>
-
-      {/* <Sheet variant="outlined" className={styles.card} sx={{ mt: 4 }}>
-        <Typography level="title-md" mb={1}>Exercise Progression</Typography>
-        <Input
-          placeholder="Search exercise…"
-          value={exercise}
-          onChange={(e) => setExercise(e.target.value)}
-          sx={{ mb: 2 }}
-        />
-        {exerciseSeries.length === 0 ? (
-          <Typography level="body-sm">No data for “{exercise}”.</Typography>
-        ) : (
-          <ResponsiveContainer width="100%" height={280}>
-            <ComposedChart data={exerciseSeries}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" tickFormatter={fmt} />
-              <YAxis />
-              <Tooltip />
-              <Line type="linear" dataKey="weight" name="Max weight (kg)" stroke="#3f51b5" dot />
-            </ComposedChart>
-          </ResponsiveContainer>
-        )}
-      </Sheet> */}
     </Box>
   );
 }

@@ -13,7 +13,7 @@ const CreateWorkoutForm = ({
 }) => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [type, setType] = useState(defaultType); // 👈 prefill it
+  const [type, setType] = useState(defaultType); 
   const [duration, setDuration] = useState('');
   const [img, setImg] = useState('');
 

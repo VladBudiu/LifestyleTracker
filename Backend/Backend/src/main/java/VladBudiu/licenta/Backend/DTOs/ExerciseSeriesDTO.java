@@ -9,5 +9,5 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ExerciseSeriesDTO {
     private LocalDate date;
-    private double    weight;   // max weight lifted that day
+    private double    weight;   
 }

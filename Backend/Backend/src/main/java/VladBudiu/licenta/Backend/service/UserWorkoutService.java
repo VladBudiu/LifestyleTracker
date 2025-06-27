@@ -63,7 +63,7 @@ public class UserWorkoutService {
         workout.setType(dto.getType());
         workout.setDurationInMin(dto.getDuration());
 
-        // Initially no exercises
+        
         workout.setExercises(Collections.emptyList());
 
         User user = userRepository.findById(dto.getUserId())
@@ -95,7 +95,6 @@ public class UserWorkoutService {
                 .getExercises()
                 .stream()
                 .map(ex -> {
-                    // filter sets for this exercise
                     List<SetRowDTO> setRows = sets.stream()
                             .filter(s -> s.getExercise().getId().equals(ex.getId()))
                             .map(s -> new SetRowDTO(
@@ -104,12 +103,12 @@ public class UserWorkoutService {
                                     s.getWeightKg()))
                             .toList();
 
-                    return new ExercisesDTO(ex, setRows);   // add a second ctor to ExercisesDTO
+                    return new ExercisesDTO(ex, setRows);   
                 })
                 .toList();
     }
 
-//    @Transactional
+
     public void saveSession(CreateWorkoutSessionDTO dto) {
 
         UserWorkout uw = repo.findById(dto.workoutId())

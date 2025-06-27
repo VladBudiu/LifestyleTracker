@@ -7,11 +7,11 @@ import { v4 as uuid } from "uuid";
 dayjs.extend(isoWeek);
 dayjs.extend(advancedFormat);
 
-/* ---------- Small helper: week-start key ---------- */
+
 export const weekKey = (date: dayjs.Dayjs | string) =>
       dayjs(date).startOf("isoWeek").format("YYYY-MM-DD");
 
-/* ---------- Types ---------- */
+
 export interface Metric {
   id: string;
   name: string;
@@ -49,9 +49,9 @@ export interface WeeklyWorkoutState {
   week: WorkoutDay[];
 }
 
-/* ---------- Week helpers ---------- */
+/*  Week helpers  */
 export function makeWeek(date: dayjs.Dayjs | string = dayjs()): WorkoutDay[] {
-  const start = dayjs(date).startOf("isoWeek");  // ← wrap string safely
+  const start = dayjs(date).startOf("isoWeek");  
   return Array.from({ length: 7 }, (_, i) => {
     const d = start.add(i, "day");
     return {

@@ -25,20 +25,18 @@ import styles from "./Diary.module.css";
 
 export default function DiaryPage() {
   const router = useRouter();
-  const [date, setDate] = useState(dayjs());                 // currently-selected day
+  const [date, setDate] = useState(dayjs());                 
   const dateStr = date.format("YYYY-MM-DD");
 
-  /* ───────── workout-week state ───────── */
+
   const [hydrated, setHydrated] = useState(false);
   const [workoutData, setWorkoutData] = useState<WeeklyWorkoutState | null>(null);
 
-  /* ───────── metrics state ───────── */
+  
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [loadingMetrics, setLoadingMetrics] = useState(true);
 
-  /* -------------------------------------------------- *
-   *  Fetch health metrics                              *
-   * -------------------------------------------------- */
+  
   const loadMetrics = async () => {
     setLoadingMetrics(true);
     try {
@@ -60,7 +58,7 @@ export default function DiaryPage() {
     }
   };
 
-  /* ───────── bootstrap workout week from localStorage ───────── */
+  
   useEffect(() => {
     const base: WeeklyWorkoutState = { goalDays: 5, totalDaysWithWorkouts: 0, week: makeWeek() };
     const persisted = fetchPersistedWeek(base.week[0].date);
@@ -68,15 +66,15 @@ export default function DiaryPage() {
     setHydrated(true);
   }, []);
 
-  /* ───────── fetch metrics whenever selected date changes ───────── */
+  
   useEffect(() => { loadMetrics(); }, [dateStr]);
 
-  /* ───────── persist week on change ───────── */
+  
   useEffect(() => {
     if (workoutData) persistWeek(workoutData);
   }, [workoutData]);
 
-  /* ───────── sync localStorage / focus ───────── */
+
   useEffect(() => {
     if (!workoutData) return;
     const refresh = () => {
@@ -91,7 +89,7 @@ export default function DiaryPage() {
     };
   }, [workoutData]);
 
-  /* ───────── add workout helper ───────── */
+  
   const addWorkout = (d: string, exerciseName: string) => {
     if (!workoutData) return;
 
@@ -114,10 +112,10 @@ export default function DiaryPage() {
     });
 
     loadMetrics();
-    router.refresh();                         // ← force SR pages to re-validate
+    router.refresh();                         
   };
 
-  /* ───────── inline-edit modal helpers ───────── */
+  
   const [editing, setEditing] =
     useState<{ id: string; name: string; value: string } | null>(null);
 
@@ -170,20 +168,20 @@ export default function DiaryPage() {
           date={dateStr}
           goalCalories={2400}
           waterGoalMl={2500}
-          onUpdated={() => { loadMetrics(); router.refresh(); }}  // ← refresh after food changes
+          onUpdated={() => { loadMetrics(); router.refresh(); }}  
         />
 
-        {/* ---- workouts ---- */}
-        <WorkoutPanel /* expose onUpdated inside WorkoutPanel and invoke loadMetrics+refresh */ />
+        
+        <WorkoutPanel  />
 
-        {/* ---- metrics grid ---- */}
+        
         <MetricGrid
           metrics={metrics}
           onClick={m => setEditing({ id: m.id, name: m.name, value: String(m.value) })}
         />
       </main>
 
-      {/* ---- inline edit modal ---- */}
+  
       {editing && (
         <div className={styles.modalBackdrop} onClick={() => setEditing(null)}>
           <div className={styles.modal} onClick={e => e.stopPropagation()}>

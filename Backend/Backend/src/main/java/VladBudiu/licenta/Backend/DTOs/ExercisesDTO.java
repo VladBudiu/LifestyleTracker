@@ -42,7 +42,7 @@ public class ExercisesDTO {
     }
 
     public ExercisesDTO(Exercise ex, List<SetRowDTO> sets) {
-        this(ex); // call original constructor
+        this(ex); 
         this.sets = sets;
     }
 

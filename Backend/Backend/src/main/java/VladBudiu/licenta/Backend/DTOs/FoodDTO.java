@@ -11,9 +11,9 @@ public class FoodDTO {
     private int calories;
     private int quantity;
 
-    private double  protein;   // NEW
-    private double  carbs;     // NEW
-    private double  fat;       // NEW
+    private double  protein;   
+    private double  carbs;     
+    private double  fat;       
 
     public double getProtein() {
         return protein;

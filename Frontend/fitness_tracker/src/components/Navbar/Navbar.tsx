@@ -14,7 +14,7 @@ const NavBar = () => {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const router = useRouter();
 
-  // SSR-safe rendering
+
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => setHasMounted(true), []);
 

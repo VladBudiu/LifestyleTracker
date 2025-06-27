@@ -12,7 +12,7 @@
     box-sizing: border-box;
   }
   
-  /* Summary ring */
+  
   .summary {
     display: flex;
     align-items: center;
@@ -48,7 +48,7 @@
     width: 100%;
   }
   
-  /* Days grid */
+  
   .daysGrid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

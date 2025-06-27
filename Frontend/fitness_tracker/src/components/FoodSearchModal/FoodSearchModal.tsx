@@ -22,7 +22,7 @@ export default function FoodSearchModal({ open, mealId, onAdd, onClose }: FoodSe
   const [grams , setGrams ] = useState(100);
   const [results, setResults] = useState<Food[]>([]);
 
-  /* ---- create debounced fetch exactly once ---- */
+
   const fetchFoodsDebounced = useCallback(
     debounce(async (q: string, g: number) => {
       try {
@@ -31,7 +31,7 @@ export default function FoodSearchModal({ open, mealId, onAdd, onClose }: FoodSe
 
         const raw = await res.json();
         const scaled: Food[] = raw.map((r: any, idx: number) => ({
-          /* `id` for your logic (can repeat between renders) */
+         
           id  : `${r.name}-${Date.now()}-${idx}`,
           name: r.name,
           kcal: Math.round(r.calories * g / 100),
@@ -45,16 +45,15 @@ export default function FoodSearchModal({ open, mealId, onAdd, onClose }: FoodSe
         console.error("Food search failed:", err);
       }
     }, 300),
-    []  // ← create only once
+    []  
   );
-
-  /* ---- effect: call debounced fetch when query or grams change ---- */
+ /* ---- effect: call debounced fetch when query or grams change ---- */
   useEffect(() => {
     if (!query.trim()) { setResults([]); return; }
     fetchFoodsDebounced(query, grams);
   }, [query, grams, fetchFoodsDebounced]);
 
-  /* ---- clear on close ---- */
+ 
   const handleClose = () => {
     setQuery("");
     setGrams(100);
@@ -92,7 +91,7 @@ export default function FoodSearchModal({ open, mealId, onAdd, onClose }: FoodSe
         <Sheet variant="outlined" sx={{ maxHeight: "60vh", overflow: "auto" }}>
           <List>
             {results.map((item, idx) => (
-              /* unique React key = name+idx (safe even with duplicates) */
+              
               <ListItem key={`${item.name}-${idx}`} sx={{ alignItems: "flex-start" }}>
                 <ListItemButton
                   disabled={!mealId}

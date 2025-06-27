@@ -27,7 +27,7 @@ public class DiaryController {
 
     private User resolveUserFromToken(String token) {
         if (token == null) throw new RuntimeException("Missing token");
-        String email = jwtUtil.validateAccessToken(token); // throws if invalid
+        String email = jwtUtil.validateAccessToken(token); 
         return userRepository.findByEmail(email).orElseThrow(() ->
                 new RuntimeException("User not found for email: " + email));
     }

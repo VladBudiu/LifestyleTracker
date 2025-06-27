@@ -27,7 +27,7 @@ public class WorkoutWeekController {
 
     @PostMapping("/log")
     public WeekResponse log(
-            @RequestBody LogRequest body) {      // plain JSON from the UI
+            @RequestBody LogRequest body) {    
         return svc.addWorkout(
                 body.userId(),
                 body.date(),
@@ -36,7 +36,7 @@ public class WorkoutWeekController {
                 body.caloriesBurned());
     }
 
-    /** small helper record that mirrors the React POST body */
+    
     public record LogRequest(
             Long userId,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,

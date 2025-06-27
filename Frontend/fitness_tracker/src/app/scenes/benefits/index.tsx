@@ -66,7 +66,7 @@ const Benefits = (props: Props) => {
 					</p>
 				</motion.div>
 
-				{ /* BENEFITS */}
+			
 				<motion.div
 					initial="hidden"
 					whileInView="visible"
@@ -78,17 +78,17 @@ const Benefits = (props: Props) => {
 					))}
 				</motion.div>
 
-				{ /* GRAPHICS AND DESCRIPTION */}
+		
 				<div className="mt-16 items-center justify-between gap-20 md:mt-28 md:flex">
-					{ /* GRAPHIC */}
+				
 					<Image
 						className="mx-auto"
 						src={BenefitsPageGraphic}
 						alt="benefits-page-graphic"
 					/>
-					{ /* DESCRIPTION */}
+			
 					<div>
-						{ /* TITLE */}
+					
 						<div className="relative">
 							<div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] before:content-abstractwaves">
 								<motion.div
@@ -108,7 +108,7 @@ const Benefits = (props: Props) => {
 							</div>
 						</div>
 
-						{ /* DESCRIPTION */}
+			
 						<motion.div
 							initial="hidden"
 							whileInView="visible"

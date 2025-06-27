@@ -21,7 +21,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class DiaryService {
 
-    /* ───────── repositories ───────── */
+   
     private final DayRepository         dayRepo;
     private final MealRepository        mealRepo;
     private final FoodRepository        foodRepo;
@@ -32,7 +32,7 @@ public class DiaryService {
     private final CalorieLogRepository  calorieRepo;
     private final UserGoalsRepository   goalsRepo;
 
-    /* ───────── internal helpers ───────── */
+   
     private Day getOrCreateDay(User user, LocalDate date) {
         return dayRepo.findByUserIdAndDate(user.getId(), date)
                 .orElseGet(() -> {
@@ -53,14 +53,12 @@ public class DiaryService {
                 });
     }
 
-    /* ───────── public API ───────── */
-
-    /* ----- add food (with full macros) ----- */
+    
     @Transactional
     public DiaryDTO addFood(User user, LocalDate date,
                             MealType type, AddFoodRequestDTO req) {
 
-        /* ----- 1. persist the food ----- */
+        
         Day  day  = getOrCreateDay(user, date);
         Meal meal = getOrCreateMeal(day, type);
 
@@ -74,18 +72,18 @@ public class DiaryService {
         f.setQuantity(req.getQuantity());
         foodRepo.save(f);
 
-        /* ----- 2. update meal's own calorie total (optional) ----- */
+        /* ----- update meal's own calorie total (optional) ----- */
         int mealTotal = foodRepo.findByMealId(meal.getId())
                 .stream().mapToInt(Food::getCalories).sum();
         meal.setTotalCalories(mealTotal);
         mealRepo.save(meal);
 
-        /* ----- 3. bump today's CalorieLog.currentCalories ----- */
+        /* ----- bump today's CalorieLog.currentCalories ----- */
         CalorieLog log = getOrCreateCalorieLog(user, date);
         log.setCurrentCalories(log.getCurrentCalories() + req.getCalories());
         calorieRepo.save(log);
 
-        /* ----- 4. return fresh diary ----- */
+        /* ----- return fresh diary ----- */
         return buildDiary(user, date);
     }
 
@@ -133,17 +131,17 @@ public class DiaryService {
         return buildDiary(user, date);
     }
 
-    /* ───────── core: build full diary DTO ───────── */
+    /* ───────── build full diary DTO ───────── */
     @Transactional(readOnly = true)
     public DiaryDTO buildDiary(User user, LocalDate date) {
 
-        /* ---------- meals ---------- */
+        /* meals  */
         Day day = dayRepo.findByUserIdAndDate(user.getId(), date).orElse(null);
         List<MealDTO> meals = day == null ? List.of()
                 : day.getMeals().stream().map(DtoMapper::toDto).toList();
 
 
-        /* ---------- calories & macros ---------- */
+        /*  calories & macros  */
         CalorieLog cLog = calorieRepo.findByUserIdAndDay(user.getId(), date).orElse(null);
         int totalCal = cLog != null ? cLog.getCurrentCalories() : 0;
 
@@ -157,7 +155,7 @@ public class DiaryService {
         }
 
 
-        /* ---------- water / steps / etc. ---------- */
+        /*  water / steps / etc.  */
         int water = waterRepo.findFirstByUserIdOrderByLoggedAtDesc(user.getId())
                 .map(WaterLog::getWaterIntake).orElse(0);
 
@@ -175,12 +173,12 @@ public class DiaryService {
         double weight = weightRepo.findFirstByUserIdOrderByLoggedAtDesc(user.getId())
                 .map(WeightLog::getWeight).orElse(0.0);
 
-        /* ---------- calorie goal ---------- */
+        /*  calorie goal  */
         int calorieGoal = calorieRepo.findByUserIdAndDay(user.getId(), date)
                 .map(CalorieLog::getTargetCalories)
                 .orElse(2000);
 
-        /* ---------- macro goals ---------- */
+        /*  macro goals  */
         MacroGoals macroGoals = goalsRepo.findByUserId(user.getId())
                 .map(ug -> new MacroGoals(
                         Optional.ofNullable(ug.getProteinGoal()).orElse(0),
@@ -207,11 +205,11 @@ public class DiaryService {
                 .build();
     }
 
-    /* ---------- recommended macro split ---------- */
+    /*  recommended macro split  */
     private MacroGoals computeMacroGoals(int kcal, String weightGoal) {
         int carbsPct   = 40;
         int proteinPct = "gain".equalsIgnoreCase(weightGoal) ? 40 : 30;
-        int fatPct     = 100 - carbsPct - proteinPct;     // 20 or 30
+        int fatPct     = 100 - carbsPct - proteinPct;     
 
         double carbsG   = (kcal * carbsPct   / 100.0) / 4;   // 4 kcal / g
         double proteinG = (kcal * proteinPct / 100.0) / 4;

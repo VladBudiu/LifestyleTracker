@@ -45,7 +45,7 @@ class SignUpServiceTest {
 
     @Test
     void whenEmailIsUnique_userIsPersisted() {
-        // Arrange
+        
         SignUpRequestDTO dto = new SignUpRequestDTO(
                 "john123", "john@demo.com", "pass123",
                 "lose", "medium", "180", "80", "70", "0.5");
@@ -55,10 +55,10 @@ class SignUpServiceTest {
         when(userRepository.save(any(User.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
-        // Act
+       
         User savedUser = signUpService.register(dto);
 
-        // Assert
+        
         assertEquals(dto.getEmail(), savedUser.getEmail());
         assertEquals(dto.getUsername(), savedUser.getUsername());
         assertEquals(dto.getWeightGoal(), savedUser.getWeightGoal());
@@ -67,7 +67,7 @@ class SignUpServiceTest {
 
     @Test
     void whenEmailAlreadyExists_throwDuplicateException() {
-        // Arrange
+        
         SignUpRequestDTO dto = new SignUpRequestDTO(
                 "john123", "john@demo.com", "pass123",
                 "lose", "medium", "180", "80", "70", "0.5");
@@ -75,7 +75,7 @@ class SignUpServiceTest {
         when(userRepository.findByEmail(dto.getEmail()))
                 .thenReturn(Optional.of(new User()));
 
-        // Act & Assert
+        
         assertThrows(IllegalArgumentException.class, () -> signUpService.register(dto));
 
 

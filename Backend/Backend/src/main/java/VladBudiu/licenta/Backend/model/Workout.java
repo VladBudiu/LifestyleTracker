@@ -13,8 +13,8 @@ public class Workout {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;               // new – NOT NULL in DB
-    private String description;        // nullable
+    private String name;               
+    private String description;        
 
     @Column(name = "muscle_group")
     private String muscleGroup;
@@ -22,7 +22,7 @@ public class Workout {
     private String imageUrl;
     private Integer durationInMin;
 
-    /*  many-to-many linker via workout_exercises  */
+    
     @ManyToMany
     @JoinTable(name = "workout_exercises",
             joinColumns        = @JoinColumn(name = "workout_id"),

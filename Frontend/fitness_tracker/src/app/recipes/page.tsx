@@ -37,7 +37,7 @@ const RecipesPage = () => {
 
   const totalPages = Math.ceil(filtered.length / itemsPerPage);
 
-  // Modal handling
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setModalVisible(false);
@@ -99,7 +99,6 @@ const RecipesPage = () => {
             >
               <div className={styles.cardContent}>
                 <h2>{recipe.name}</h2>
-                {/* <p>{recipe.calories} kcal</p> */}
               </div>
             </div>
           ))}
@@ -159,7 +158,6 @@ const RecipesPage = () => {
                 className={styles.modalImage}
               />
               <h2>{selectedRecipe.name}</h2>
-              {/* <p>{selectedRecipe.calories} kcal</p> */}
               <ul>
                 {parsedIngredients.map((ing: string, idx: number) => (
                   <li key={idx}>{ing}</li>

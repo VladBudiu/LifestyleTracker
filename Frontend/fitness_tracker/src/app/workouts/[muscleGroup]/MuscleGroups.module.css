@@ -1,7 +1,7 @@
 .container {
-  max-width: 1200px;         /* limit container width */
-  padding: 2rem 1rem;        /* spacing on small screens */
-  margin: 0 auto;            /* center horizontally */
+  max-width: 1200px;         
+  padding: 2rem 1rem;        
+  margin: 0 auto;            
 }
 
 .heading {
@@ -13,16 +13,16 @@
   text-transform: uppercase;
 }
 
-/* Workout cards grid */
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));  /* narrower min width */
-  gap: 1.5rem;                        /* reduced gap */
-  justify-items: center;             /* center cards inside columns */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+  gap: 1.5rem;                        
+  justify-items: center;             
   margin-bottom: 2rem;
 }
 
-/* Form styles */
+
 .formContainer {
   background-color: #f5fafd;
   padding: 2rem;
@@ -65,7 +65,7 @@
   background-color: #005bb5;
 }
 
-/* Create Button */
+
 .buttonWrapper {
   display: flex;
   justify-content: center;

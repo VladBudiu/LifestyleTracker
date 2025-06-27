@@ -11,8 +11,8 @@ import java.util.Date;
 @Component
 public class JWTUtil {
 
-    private final String accessSecret = "your-very-long-access-secret-key-change-this"; // min 256 bits (32+ chars)
-    private final String refreshSecret = "your-very-long-refresh-secret-key-change-this"; // min 256 bits
+    private final String accessSecret = "your-very-long-access-secret-key-change-this"; 
+    private final String refreshSecret = "your-very-long-refresh-secret-key-change-this"; 
 
     public String generateAccessToken(String username) {
         return Jwts.builder()

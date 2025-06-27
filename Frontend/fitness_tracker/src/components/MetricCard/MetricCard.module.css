@@ -36,7 +36,7 @@
 
 .statGoal { opacity: .7; }
 
-/* progress bar scales with viewport */
+
 .bar {
   flex: 1 1 auto;
   height: clamp(10px, .8vw + 8px, 18px);

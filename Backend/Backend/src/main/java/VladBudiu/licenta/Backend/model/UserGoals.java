@@ -21,9 +21,9 @@ public class UserGoals {
     private Double goalWeight;
     private Integer calorieTarget;
 
-    private Integer proteinGoal;  // ✅ NEW
-    private Integer carbsGoal;    // ✅ NEW
-    private Integer fatGoal;      // ✅ NEW
+    private Integer proteinGoal;  
+    private Integer carbsGoal;    
+    private Integer fatGoal;      
 
     @Column(nullable = false)
     private LocalDateTime updatedAt = LocalDateTime.now();
@@ -33,6 +33,4 @@ public class UserGoals {
     private Integer waterGoal;
     private Integer workout_goal;
     private Double weeklyGoal;
-
-    // No need for manual getters/setters due to Lombok @Data
 }

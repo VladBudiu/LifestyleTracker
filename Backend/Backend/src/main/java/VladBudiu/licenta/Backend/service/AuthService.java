@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-@RequiredArgsConstructor    // Lombok – generates ctor for final fields
+@RequiredArgsConstructor    
 public class AuthService {
 
     private final UserRepository  userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    /** Throws 401 on bad credentials, returns DTO on success. */
+    
     public LoginResponseDTO login(LoginRequestDTO loginRequest) {
 
         User user = userRepository.findByEmail(loginRequest.getEmail())

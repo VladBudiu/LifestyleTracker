@@ -1,31 +1,24 @@
-/* -----------------------------------------------------------------
-   CreateWorkoutPage.module.css
-   -----------------------------------------------------------------
-   Matches spacing / palette conventions used in existing WorkoutToday
-   and Dashboard pages. All sizing uses rem for easy theming.
-   Joy UI already provides most visual polish – this stylesheet mainly
-   handles layout, gaps and a few custom accents.
--------------------------------------------------------------------*/
+
 
 :root {
-  /* Soft card shadow & border radius consistent with Joy default */
+  
   --card-radius: 1rem;
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* ───────── Root container ───────── */
+
 .page {
   --gap: 1.25rem;
 
   width: min(100%, 860px);
   margin-inline: auto;
-  padding: 2rem 1rem;           /* balanced vertical & horizontal spacing */
+  padding: 2rem 1rem;           
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  min-height: 100vh;            /* allow vertical centering */
-  justify-content: center;      /* ⇲ vertical centre */
+  min-height: 100vh;           
+  justify-content: center;     
   animation: fadeIn 0.4s ease-out;
 }
 
@@ -34,13 +27,12 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Workout meta section ---------- */
 .meta { display: flex; flex-direction: column; gap: 0.75rem; }
 
-/* ---------- Search bar ---------- */
+
 .search { position: relative; max-width: 420px; }
 
-/* ---------- Suggestions dropdown ---------- */
+
 .suggestions {
   border: 1px solid var(--joy-palette-neutral-outlinedBorder, #E0E0E0);
   border-radius: var(--card-radius);
@@ -48,9 +40,9 @@
   max-height: 240px;
   overflow-y: auto;
 }
-.suggestions > ul { padding: 0.25rem 0; } /* remove default Joy list padding */
+.suggestions > ul { padding: 0.25rem 0; } 
 
-/* ---------- Selected exercises list ---------- */
+
 .selected { display: flex; flex-direction: column; gap: 1rem; }
 
 .exerciseCard { border-radius: var(--card-radius); box-shadow: var(--shadow-sm); }
@@ -61,7 +53,7 @@
 
 .setList { margin-top: 0.25rem; padding-left: 0.5rem; }
 
-/* ---------- Actions row ---------- */
+
 .actions { align-items: center; justify-content: flex-end; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap; }
 .actions p { margin: 0; }
 

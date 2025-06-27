@@ -1,4 +1,4 @@
-/* components/ProfileDetails.tsx */
+
 
 "use client";
 
@@ -9,39 +9,39 @@ import {
 } from "@mui/joy";
 import { fetchWithAutoRefresh } from "@/lib/fetchWithAutoRefresh";
 
-/* ---------- helpers ---------- */
+
 const safeVal = (v: unknown) => (v ?? "") as string | number;
 
-/** replace every null/undefined with "" (so Inputs stay controlled) */
+
 const normalise = (obj: any) =>
   Object.fromEntries(
     Object.entries(obj ?? {}).map(([k, v]) => [k, v ?? ""]),
   );
 
-/* ---------- component ---------- */
+ 
 export default function ProfileDetails() {
   const [data, setData]       = useState<any>(null);
   const [editMode, setEdit]   = useState(false);
-  const [form, setForm]       = useState<any>({});              // always normalised
+  const [form, setForm]       = useState<any>({});              
 
-  /* initial fetch */
+  
   useEffect(() => {
     (async () => {
       const { userId } = JSON.parse(localStorage.getItem("user") || "{}");
       const res  = await fetchWithAutoRefresh(`http://localhost:8080/api/profile/${userId}`);
       const json = await res.json();
       setData(json);
-      setForm(normalise(json));                                  // ← sanitise once
+      setForm(normalise(json));                                  
     })();
   }, []);
 
-  /* input change handler */
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((p: any) => ({ ...p, [name]: value }));
   };
 
-  /* PUT → backend */
+  
   const saveChanges = async () => {
     const { userId } = JSON.parse(localStorage.getItem("user") || "{}");
     await fetchWithAutoRefresh(
@@ -58,7 +58,7 @@ export default function ProfileDetails() {
 
   if (!data) return <p>Loading profile…</p>;
 
-  /* ---------- render ---------- */
+  
   return (
     <Box component="form" onSubmit={e => e.preventDefault()}>
       <Grid container spacing={2}>

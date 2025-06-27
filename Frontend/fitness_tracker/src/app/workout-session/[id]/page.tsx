@@ -17,16 +17,10 @@ import { useEffect, useMemo, useState } from "react";
 import styles from "./WorkoutNow.module.css";
 import { fetchWithAutoRefresh } from "@/lib/fetchWithAutoRefresh";
 
-/* -------------------------------------------------------------------------- */
-/*  Types                                                                      */
-/* -------------------------------------------------------------------------- */
+
 interface SetRow {
   setNumber: number;
   reps: number;
-  /**
-   * Always use a single canonical key for weight so the value travels from the
-   * UI ➝ API ➝ DB without getting lost.
-   */
   weightKg: number;
 }
 
@@ -43,9 +37,7 @@ interface WorkoutMeta {
   type?: string;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Component                                                                  */
-/* -------------------------------------------------------------------------- */
+
 export default function WorkoutSessionPage() {
   const { id } = useParams();
   const searchParams = useSearchParams();
@@ -53,20 +45,18 @@ export default function WorkoutSessionPage() {
   const dateParam = searchParams.get("date");
   const date = dateParam || new Date().toISOString().split("T")[0];
 
-  /* --------------------------- state -------------------------------------- */
+ 
   const [meta, setMeta] = useState<WorkoutMeta | null>(null);
   const [exercises, setExercises] = useState<ExerciseRow[]>([]);
   const [loading, setLoading] = useState(true);
 
-  /* ------------------------------------------------------------------------ */
-  /*  Fetch workout + exercises                                               */
-  /* ------------------------------------------------------------------------ */
+ 
   useEffect(() => {
     if (!id) return;
 
     (async () => {
       try {
-        /* ---------- workout meta ------------------------------------------------- */
+        
         let res = await fetchWithAutoRefresh(
           `http://localhost:8080/api/user-workouts/${id}`
         );
@@ -85,7 +75,7 @@ export default function WorkoutSessionPage() {
           });
         }
 
-        /* ---------- exercises + previously saved sets --------------------------- */
+        
         let exRes = await fetchWithAutoRefresh(
           `http://localhost:8080/api/user-workouts/${id}/exercises`
         );
@@ -102,7 +92,7 @@ export default function WorkoutSessionPage() {
           sets: (e.sets ?? e.userSets ?? []).map((s: any, i: number) => ({
             setNumber: i + 1,
             reps: s.reps,
-            // accept either key coming from the API for backwards compat
+            
             weightKg: s.weightKg ?? s.weight ?? 0,
           })),
         }));
@@ -115,9 +105,7 @@ export default function WorkoutSessionPage() {
     })();
   }, [id]);
 
-  /* ------------------------------------------------------------------------ */
-  /*  Helpers                                                                 */
-  /* ------------------------------------------------------------------------ */
+  
   const addSet = (exId: number) => {
     const repsStr = prompt("Reps?");
     const weightStr = prompt("Weight (kg)?");
@@ -164,9 +152,7 @@ export default function WorkoutSessionPage() {
     );
   }, [exercises]);
 
-  /* ------------------------------------------------------------------------ */
-  /*  Submit session                                                          */
-  /* ------------------------------------------------------------------------ */
+  
   const finishSession = async () => {
     try {
       await fetchWithAutoRefresh(
@@ -186,16 +172,14 @@ export default function WorkoutSessionPage() {
       );
 
       alert("Great job! Session saved.");
-      // router.push("/myhome");
+      router.push("/myhome");
     } catch (e) {
       console.error(e);
       alert("Could not save workout session.");
     }
   };
 
-  /* ------------------------------------------------------------------------ */
-  /*  Render                                                                  */
-  /* ------------------------------------------------------------------------ */
+  
   if (loading) return <Typography sx={{ p: 4 }}>Loading…</Typography>;
 
   return (

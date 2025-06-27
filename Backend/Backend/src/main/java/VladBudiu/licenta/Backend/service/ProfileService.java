@@ -53,11 +53,11 @@ public class ProfileService {
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        /* ---------- detect weight change ---------- */
-        Double previousWeight = user.getWeight();            // keep the old value
-        Double newWeight      = (double) dto.getWeight();    // convert int→Double
+        /*  detect weight change  */
+        Double previousWeight = user.getWeight();            
+        Double newWeight      = (double) dto.getWeight();    
 
-        /* ---------- update personal fields -------- */
+        /*  update personal fields  */
         user.setFirstName(dto.getFirst_name());
         user.setLastName(dto.getLast_name());
         user.setHeight((double) dto.getHeight());
@@ -66,7 +66,7 @@ public class ProfileService {
 
         userRepo.save(user);
 
-        /* ---------- goals ------------------------- */
+        /*  goals  */
         UserGoals goals = goalsRepo.findByUserId(userId)
                 .orElse(new UserGoals());
 
@@ -80,11 +80,11 @@ public class ProfileService {
 
         goalsRepo.save(goals);
 
-        /* ---------- weight log (only if changed) -- */
+        /*  weight log*/
         if (previousWeight == null || !previousWeight.equals(newWeight)) {
             WeightLog log = new WeightLog();
             log.setUser(user);
-            log.setWeight(Math.round(newWeight));   // store as int kg
+            log.setWeight(Math.round(newWeight));    
             log.setLoggedAt(LocalDateTime.now());
             weightRepo.save(log);
         }

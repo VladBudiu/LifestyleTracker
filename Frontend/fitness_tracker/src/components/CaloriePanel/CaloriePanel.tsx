@@ -24,7 +24,7 @@ import {
   IoChevronDown,
   IoChevronForward,
 } from "react-icons/io5";
-import { useRouter } from "next/navigation";               // ← NEW
+import { useRouter } from "next/navigation";              
 import styles from "./CaloriePanel.module.css";
 
 import FoodSearchModal   from "@/components/FoodSearchModal/FoodSearchModal";
@@ -123,7 +123,7 @@ export default function CaloriePanel({
     });
   }, [macroGoals]);
 
-  /* ---------- initial fetch ---------- */
+  
   const fetched = useRef(false);
   useEffect(() => {
     if (fetched.current) return;
@@ -138,16 +138,16 @@ export default function CaloriePanel({
     })();
   }, [date, transformDiary, onUpdated]);
 
-  /* ---------- actions ---------- */
+  
   const addFood = async (food: Food, mealId: MealId) => {
-    // optimistic
+    
     setData(prev => {
       const meals = prev.meals.map(m =>
         m.id === mealId ? { ...m, foods: [...m.foods, food] } : m);
       return recalcTotals({ ...prev, meals });
     });
 
-    // backend
+    
     const res = await fetchWithAutoRefresh(
       `http://localhost:8080/api/diary/${date}/meals/${mealId}/foods`,
       {
@@ -167,7 +167,7 @@ export default function CaloriePanel({
       const fresh = transformDiary(await res.json());
       setData(fresh);
       onUpdated?.(fresh);
-      router.refresh();                               // ← NEW: full-page re-render
+      router.refresh();                               
     }
     setModalMeal(null);
   };
@@ -188,7 +188,7 @@ export default function CaloriePanel({
     }
   };
 
-  /* ---------- photo detection ---------- */
+  
   const handlePhotoUpload = async (file?: File) => {
     if (!file) return;
 
@@ -228,7 +228,7 @@ export default function CaloriePanel({
     if (foods.length) setDetected(foods);
   };
 
-  /* ---------- derived ---------- */
+  
   const pct      = Math.min(100, (data.totalCalories / data.goalCalories) * 100);
   const pctWater = data.waterGoalMl ? Math.min(100, (data.waterMl / data.waterGoalMl) * 100) : 0;
   const macroPct = (v: number, g: number) => Math.min(100, (v / g) * 100);
@@ -239,7 +239,7 @@ export default function CaloriePanel({
     fat  : a.fat   + f.fat,
   }), { kcal: 0, prot: 0, carbs: 0, fat: 0 });
 
-  /* ---------- render ---------- */
+  
   return (
     <>
       {/* ===== main panel ===== */}

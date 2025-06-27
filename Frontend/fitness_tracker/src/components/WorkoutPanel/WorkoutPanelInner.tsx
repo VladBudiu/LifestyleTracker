@@ -21,18 +21,18 @@ import { fetchWithAutoRefresh } from "@/lib/fetchWithAutoRefresh";
 export default function WorkoutPanelInner() {
   const router = useRouter();
 
-  /* ───────── state ───────── */
+
   const [ready, setReady] = useState(false);
   const [weekState, setWeekState] = useState<WeeklyWorkoutState | null>(null);
 
   const [modalDate, setModalDate] = useState<string | null>(null);
   const [name, setName]           = useState("");
 
-  /* ───────── helpers ───────── */
+ 
   const userId      = () => JSON.parse(localStorage.getItem("user") || "{}").userId;
   const weekStartIso = () => dayjs().startOf("isoWeek").format("YYYY-MM-DD");
 
-  /* ───────── fetch week on mount ───────── */
+ 
   useEffect(() => {
     (async () => {
       try {
@@ -59,9 +59,7 @@ export default function WorkoutPanelInner() {
     })();
   }, []);
 
-  /* ------------------------------------------------------------------ */
-  /*  📌 helper → POST “Workout” metric whenever we need to sync        */
-  /* ------------------------------------------------------------------ */
+  
   const pushWorkoutMetric = async (value: number) => {
     try {
       await fetchWithAutoRefresh(
@@ -71,7 +69,7 @@ export default function WorkoutPanelInner() {
           headers: { "Content-Type": "application/json" },
           credentials: "include",
           body: JSON.stringify({
-            name : "Workout",   // matches switch-case in backend
+            name : "Workout",   
             value,
             unit : "days",
           }),
@@ -82,21 +80,19 @@ export default function WorkoutPanelInner() {
     }
   };
 
-  /* ------------------------------------------------------------------ */
-  /*  📌 whenever totalDaysWithWorkouts changes → sync to backend       */
-  /* ------------------------------------------------------------------ */
+  
   const prevCountRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (!weekState) return;
     const cur = weekState.totalDaysWithWorkouts;
-    if (prevCountRef.current === cur) return;  // no change
+    if (prevCountRef.current === cur) return;  
 
     prevCountRef.current = cur;
-    pushWorkoutMetric(cur);                    // persist!
-  }, [weekState?.totalDaysWithWorkouts]);      // ← key dependency
+    pushWorkoutMetric(cur);                    
+  }, [weekState?.totalDaysWithWorkouts]);      
 
-  /* ───────── add workout (POST) ───────── */
+
   const add = async () => {
     if (!modalDate || !name.trim() || !weekState) return;
 
@@ -117,7 +113,7 @@ export default function WorkoutPanelInner() {
       );
       if (!res.ok) throw new Error(await res.text());
 
-      const json = await res.json(); // updated week
+      const json = await res.json(); 
       const base = {
         goalDays: json.goalDays,
         totalDaysWithWorkouts: json.days.filter((d:any)=>d.workouts.length).length,
@@ -132,7 +128,7 @@ export default function WorkoutPanelInner() {
     }
   };
 
-  /* ───────── UI ───────── */
+  
   if (!ready || !weekState) return null;
 
   const pct   = Math.min(

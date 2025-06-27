@@ -9,9 +9,8 @@ import styles from './MuscleGroups.module.css';
 import Navbar from '@/components/Navbar/Navbar';
 import { fetchWithAutoRefresh } from '@/lib/fetchWithAutoRefresh';
 import { useRouter } from 'next/navigation';
-/* -------------------------------------------------------------------------- */
-/*  Type definitions                                                           */
-/* -------------------------------------------------------------------------- */
+
+
 interface Workout {
   id: number;
   name: string;
@@ -37,9 +36,7 @@ interface Exercise {
   primary_equipment?: string;
 }
 
-/* -------------------------------------------------------------------------- */
-/*  🖼  BASE WORKOUT PICTURES (fallbacks)                                      */
-/* -------------------------------------------------------------------------- */
+
 const FALLBACK_IMAGES: string[] = [
   '/baseWorkoutPictures/1.jpg',
   '/baseWorkoutPictures/2.jpg',
@@ -90,28 +87,24 @@ const getEmbedUrl = (url?: string): string | null => {
   return match ? `https://www.youtube.com/embed/${match[1]}` : null;
 };
 
-/* -------------------------------------------------------------------------- */
-/*  Component                                                                  */
-/* -------------------------------------------------------------------------- */
+
 const MuscleGroupPage = () => {
   const { muscleGroup } = useParams();
   const router = useRouter();
-  /* --------------------------- state -------------------------------------- */
+ 
   const [group, setGroup] = useState('');
   const [workouts, setWorkouts] = useState<Workout[]>([]);
   const [customWorkouts, setCustomWorkouts] = useState<Workout[]>([]);
   const [loadingCustom, setLoadingCustom] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [visibleDefault, setVisibleDefault] = useState(4); // 👈 how many default cards to show
+  const [visibleDefault, setVisibleDefault] = useState(4); 
 
   const [selectedWorkout, setSelectedWorkout] = useState<Workout | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [exercises, setExercises] = useState<Exercise[]>([]);
   const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
 
-  /* ------------------------------------------------------------------------ */
-  /*  Helpers                                                                 */
-  /* ------------------------------------------------------------------------ */
+  
   const getUserId = (): number | null => {
     try {
       const stored = localStorage.getItem('user');
@@ -124,9 +117,7 @@ const MuscleGroupPage = () => {
     }
   };
 
-  /* ------------------------------------------------------------------------ */
-  /*  DEFAULT WORKOUTS (system)                                               */
-  /* ------------------------------------------------------------------------ */
+  
   useEffect(() => {
     if (!muscleGroup) return;
 
@@ -161,7 +152,7 @@ const MuscleGroupPage = () => {
         }));
 
         setWorkouts(formatted);
-        setVisibleDefault(4); // reset slice when group changes
+        setVisibleDefault(4); 
       } catch (error) {
         console.error('Failed to fetch workouts:', error);
       }
@@ -170,9 +161,7 @@ const MuscleGroupPage = () => {
     fetchGroupWorkouts();
   }, [muscleGroup]);
 
-  /* ------------------------------------------------------------------------ */
-  /*  USER-CREATED WORKOUTS                                                   */
-  /* ------------------------------------------------------------------------ */
+  
   useEffect(() => {
     if (!group) return;
 
@@ -214,9 +203,7 @@ const MuscleGroupPage = () => {
     fetchCustomWorkouts();
   }, [group]);
 
-  /* ------------------------------------------------------------------------ */
-  /*  SAVE NEW CUSTOM WORKOUT                                                 */
-  /* ------------------------------------------------------------------------ */
+  
   const handleAddWorkout = async (workout: Workout) => {
     const userId = getUserId();
     if (!userId) {
@@ -255,9 +242,7 @@ const MuscleGroupPage = () => {
     setShowForm(false);
   };
 
-  /* ------------------------------------------------------------------------ */
-  /*  OPEN WORKOUT DETAILS                                                    */
-  /* ------------------------------------------------------------------------ */
+  
   const handleWorkoutClick = async (workout: Workout) => {
     setSelectedWorkout(workout);
     setIsModalOpen(true);
@@ -287,9 +272,7 @@ const MuscleGroupPage = () => {
     );
   };
 
-  /* ------------------------------------------------------------------------ */
-  /*  Render                                                                  */
-  /* ------------------------------------------------------------------------ */
+  
   return (
     <div>
       <Navbar />
@@ -440,8 +423,8 @@ const MuscleGroupPage = () => {
                 <button
                   className={styles.startButton}
                   onClick={() => {
-                    setIsModalOpen(false);         // ⬅️ close details modal
-                    setShowAddExerciseModal(true); // ⬅️ open add-exercise modal
+                    setIsModalOpen(false);         
+                    setShowAddExerciseModal(true); 
                   }}
                 >
                   Add exercises to the workout

@@ -29,19 +29,7 @@ interface GroupData {
   workouts: Workout[];
 }
 
-/**
- * -----------------------------------------------------------------------------
- *  🖼  BASE WORKOUT PICTURES
- * -----------------------------------------------------------------------------
- *  1.  Put all your fallback images (jpg / png / webp) in the **public** folder
- *      under baseWorkoutPictures** →   public/baseWorkoutPictures/..
- *  2.  List them below *once* and we will randomly pick one every time a workout
- *      comes back from the API without a predefined `imageUrl`.
- *  3.  Because they live in **public** you can reference them with a simple
- *      absolute URL (starting with '/') and you do **NOT** need to import or
- *      use <Image/> if you don’t want to. Swiper just needs a URL string for a
- *      background‑image.
- * ---------------------------------------------------------------------------*/
+
 const FALLBACK_IMAGES: string[] = [
   '/baseWorkoutPictures/1.jpg',
   '/baseWorkoutPictures/2.jpg',
@@ -107,7 +95,7 @@ const Workouts = () => {
             name: w.type,
             description: '',
             muscle_group: w.type,
-            // ▶️  Pick the server image if provided, otherwise grab a random fallback
+          
             imageUrl: w.imageUrl && w.imageUrl.trim().length > 0 ? w.imageUrl : getRandomFallback(),
             numberOfExercises: w.numberOfExercises || 0,
           });

@@ -12,7 +12,7 @@ public class UserGoal {
     @Column(name = "user_id")
     private Long userId;
     @Column(name = "workout_goal")
-    private Integer workout_goal; // goalDays
+    private Integer workout_goal; 
     /* getters / setters */
 
     public Long getId() {

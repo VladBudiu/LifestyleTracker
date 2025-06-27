@@ -29,7 +29,7 @@ const Banner3 = () => {
     fetchMeals();
   }, []);
 
-  // Handle ESC key + scroll lock
+  
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setModalVisible(false);
@@ -101,7 +101,7 @@ const Banner3 = () => {
         <div className={styles.modalOverlay} onClick={closeModal}>
           <div
             className={`${styles.modalContent} ${styles.fadeIn}`}
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside modal
+            onClick={(e) => e.stopPropagation()} 
           >
             <img src={selectedMeal.image_path} alt={selectedMeal.name} className={styles.modalImage} />
             <h2>{selectedMeal.name}</h2>
